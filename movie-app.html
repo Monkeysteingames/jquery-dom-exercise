@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Ratings!</title>
+</head>
+
+<body>
+    <h1 class="title">Movie Ratings!</h1>
+
+    <form>
+        <input class="movie-name" type="text" placeholder="movie name">
+        <input class="movie-rating" type="number" min="0" max="10" placeholder="rating">
+        <button type="submit">add to list</button>
+    </form>
+
+    <section>
+        <h2>Rating List:</h2>
+        <ul id="movie-container">
+
+        </ul>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script>
+        $(function () { //wait for DOM to load
+            $('form').on('submit', function (event) {
+                event.preventDefault();
+                const movie = $('.movie-name').val();
+                const rating = $('.movie-rating').val();
+                const addedMovie = $('#movie-container').append(`<li>${movie} - rated: ${rating} out of 10</li>`).append('<button class="remove-button">remove</button>')
+            })
+            $('section').on('click', ".remove-button", function () {
+                $(this).prev().remove()
+                $(this).remove()
+            })
+        })
+    </script>
+</body>
+
+
+
+</html>
